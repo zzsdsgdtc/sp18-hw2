@@ -43,7 +43,7 @@ public class GlobeSortClient {
         long startTime = System.currentTimeMillis();
         serverStub.ping(Empty.newBuilder().build());
         long endTime = System.currentTimeMillis();
-        double latency = (endTime - startTime) / 2.0 ;
+        double latency = (endTime - startTime) / 2.0 / 1000;
         System.out.println("Ping successful.");
 
         System.out.println("Requesting server to sort array");
@@ -52,11 +52,11 @@ public class GlobeSortClient {
         startTime = System.currentTimeMillis();
         IntArray response = serverStub.sortIntegers(request);
         endTime = System.currentTimeMillis();
-        double appThroughput = values.length * 1000.0 / (endTime - startTime);
+        double appThroughput = values.length / (endTime - startTime) * 1000;
 
         long sortingTime = response.getSortingTime();
         double oneWayNetThroughput = (endTime - startTime - sortingTime) / 2.0;
-        oneWayNetThroughput = values.length * 1000 / oneWayNetThroughput;
+        oneWayNetThroughput = values.length / oneWayNetThroughput * 1000;
 
         System.out.println("Sorted array");
         System.out.println("App Throughput: " + appThroughput);        
