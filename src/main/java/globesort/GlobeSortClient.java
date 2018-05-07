@@ -52,7 +52,7 @@ public class GlobeSortClient {
         startTime = System.currentTimeMillis();
         IntArray response = serverStub.sortIntegers(request);
         endTime = System.currentTimeMillis();
-        double appThroughput = values.length / (endTime - startTime) * 1000;
+        double appThroughput = values.length * 1.0 / (endTime - startTime) * 1000;
 
         long sortingTime = response.getSortingTime();
         double oneWayNetThroughput = (endTime - startTime - sortingTime) / 2.0;
