@@ -56,6 +56,7 @@ public class GlobeSortClient {
 
         long sortingTime = response.getSortingTime();
         double oneWayNetThroughput = (endTime - startTime - sortingTime) / 2.0;
+        oneWayNetThroughput = oneWayNetThroughput * 1000 / oneWayNetThroughput;
 
         System.out.println("Sorted array");
         System.out.println("App Throughput: " + appThroughput);        
